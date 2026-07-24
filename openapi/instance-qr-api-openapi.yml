@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: Robot rollout verifier Archive Qr API
+  version: 0.1.0
+tags:
+- name: Qr
+paths:
+  /api/qr:
+    get:
+      summary: Qr Endpoint
+      description: 'SVG QR code linking a phone to this viewer''s live session: encodes
+
+        <public origin>/record?session=<sid>. Only the session is caller-supplied
+
+        (sanitized), so this can''t be used to mint QR codes for arbitrary URLs.'
+      operationId: qr_endpoint_api_qr_get
+      parameters:
+      - name: session
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Session
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Qr
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError

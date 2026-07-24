@@ -1,0 +1,19 @@
+openapi: 3.1.0
+info:
+  title: Robot rollout verifier Archive Live Example Video API
+  version: 0.1.0
+tags:
+- name: Live Example Video
+paths:
+  /api/live_example_video:
+    get:
+      summary: Live Example Video
+      operationId: live_example_video_api_live_example_video_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Live Example Video

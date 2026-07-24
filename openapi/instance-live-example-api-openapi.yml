@@ -1,0 +1,24 @@
+openapi: 3.1.0
+info:
+  title: Robot rollout verifier Archive Live Example API
+  version: 0.1.0
+tags:
+- name: Live Example
+paths:
+  /api/live_example:
+    get:
+      summary: Live Example
+      description: 'Self-contained worked example (pill-jar take) shown on the live landing
+
+        page. Pre-rendered offline (scripts/build_example) so it needs no model
+
+        server or Opus call at view time and survives restarts.'
+      operationId: live_example_api_live_example_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Live Example

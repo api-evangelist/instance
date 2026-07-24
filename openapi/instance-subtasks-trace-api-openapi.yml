@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: Robot rollout verifier Archive Subtasks Trace API
+  version: 0.1.0
+tags:
+- name: Subtasks Trace
+paths:
+  /api/subtasks_trace:
+    get:
+      summary: Subtasks Trace
+      description: 'Cursor-poll the labeling loop''s reasoning trace for one clip — the
+
+        wall''s drawer calls this every ~2s while /api/subtasks?mode=label runs,
+
+        so the agent''s requests/reasons appear as they happen (same cursor
+
+        mechanics as /api/job).'
+      operationId: subtasks_trace_api_subtasks_trace_get
+      parameters:
+      - name: clip_id
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Clip Id
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 0
+          title: Cursor
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Subtasks Trace
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError

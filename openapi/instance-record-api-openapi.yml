@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: Robot rollout verifier Archive Record API
+  version: 0.1.0
+tags:
+- name: Record
+paths:
+  /record:
+    get:
+      summary: Record Page
+      operationId: record_page_record_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            text/html:
+              schema:
+                type: string
+      tags:
+      - Record

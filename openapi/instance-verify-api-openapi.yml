@@ -1,0 +1,250 @@
+openapi: 3.1.0
+info:
+  title: Robot rollout verifier Archive Verify API
+  version: 0.1.0
+tags:
+- name: Verify
+paths:
+  /api/verify/start:
+    post:
+      summary: Verify Start
+      description: 'Background twin of /api/h1 (mode=single) / /api/segment (mode=multi).
+
+
+        final=0 opens a STREAMING job: the browser adds videos via
+
+        /api/verify/add as each upload lands, so verification overlaps upload —
+
+        results stream out while later files are still in transit. plan_total is
+
+        the intended batch size, used only for progress display.'
+      operationId: verify_start_api_verify_start_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_verify_start_api_verify_start_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Verify
+  /api/verify/add:
+    post:
+      summary: Verify Add
+      description: 'Feed more videos into a streaming job (and/or seal it with final=1 —
+
+        a seal-only call carries no files). Each add-group starts verifying
+
+        immediately; the job completes when sealed and every video delivered.'
+      operationId: verify_add_api_verify_add_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_verify_add_api_verify_add_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Verify
+  /v1/verify:
+    post:
+      summary: V1 Verify
+      description: 'Verify ONE robot-rollout video against a task instruction (our h1
+
+        finetune).
+
+
+        Form fields: `task` (the instruction), `file` (the video), `frames`
+
+        (frames sampled, clamped 8-32).
+
+
+        Returns a single verdict: `"success"`, `"failure"`, or `null` (the model
+
+        gave no parseable answer). A video holding several sequential attempts
+
+        should instead go to POST /v1/batch with mode=multi.'
+      operationId: v1_verify_v1_verify_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_v1_verify_v1_verify_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyOut'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Verify
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    VerifyOut:
+      properties:
+        task:
+          type: string
+          title: Task
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        verdict:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Verdict
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      type: object
+      required:
+      - task
+      - verdict
+      title: VerifyOut
+    Body_v1_verify_v1_verify_post:
+      properties:
+        task:
+          type: string
+          title: Task
+        file:
+          type: string
+          contentMediaType: application/octet-stream
+          title: File
+        frames:
+          type: integer
+          title: Frames
+          default: 8
+      type: object
+      required:
+      - task
+      - file
+      title: Body_v1_verify_v1_verify_post
+    Body_verify_start_api_verify_start_post:
+      properties:
+        task:
+          type: string
+          title: Task
+        mode:
+          type: string
+          title: Mode
+          default: single
+        files:
+          anyOf:
+          - items:
+              type: string
+              contentMediaType: application/octet-stream
+            type: array
+          - type: 'null'
+          title: Files
+        frames:
+          type: integer
+          title: Frames
+          default: 8
+        tokens:
+          type: string
+          title: Tokens
+        final:
+          type: integer
+          title: Final
+          default: 1
+        plan_total:
+          type: integer
+          title: Plan Total
+          default: 0
+      type: object
+      required:
+      - task
+      title: Body_verify_start_api_verify_start_post
+    Body_verify_add_api_verify_add_post:
+      properties:
+        job_id:
+          type: string
+          title: Job Id
+        files:
+          anyOf:
+          - items:
+              type: string
+              contentMediaType: application/octet-stream
+            type: array
+          - type: 'null'
+          title: Files
+        tokens:
+          type: string
+          title: Tokens
+        final:
+          type: integer
+          title: Final
+          default: 0
+      type: object
+      required:
+      - job_id
+      title: Body_verify_add_api_verify_add_post
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError

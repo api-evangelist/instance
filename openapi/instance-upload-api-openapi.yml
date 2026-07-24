@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: Robot rollout verifier Archive Upload API
+  version: 0.1.0
+tags:
+- name: Upload
+paths:
+  /api/upload/begin:
+    post:
+      summary: Upload Begin
+      operationId: upload_begin_api_upload_begin_post
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Body_upload_begin_api_upload_begin_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Upload
+  /api/upload/chunk:
+    post:
+      summary: Upload Chunk
+      operationId: upload_chunk_api_upload_chunk_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_upload_chunk_api_upload_chunk_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Upload
+components:
+  schemas:
+    Body_upload_chunk_api_upload_chunk_post:
+      properties:
+        upload_id:
+          type: string
+          title: Upload Id
+        chunk:
+          type: string
+          contentMediaType: application/octet-stream
+          title: Chunk
+        offset:
+          type: integer
+          title: Offset
+          default: -1
+      type: object
+      required:
+      - upload_id
+      - chunk
+      title: Body_upload_chunk_api_upload_chunk_post
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    Body_upload_begin_api_upload_begin_post:
+      properties:
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - name
+      title: Body_upload_begin_api_upload_begin_post

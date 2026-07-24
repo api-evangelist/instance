@@ -1,0 +1,90 @@
+openapi: 3.1.0
+info:
+  title: Robot rollout verifier Archive Usage API
+  version: 0.1.0
+tags:
+- name: Usage
+paths:
+  /api/usage:
+    get:
+      summary: Usage Api
+      operationId: usage_api_api_usage_get
+      parameters:
+      - name: token
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Token
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 500
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Usage
+  /usage:
+    get:
+      summary: Usage Page
+      operationId: usage_page_usage_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            text/html:
+              schema:
+                type: string
+      tags:
+      - Usage
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError

@@ -1,0 +1,163 @@
+openapi: 3.1.0
+info:
+  title: Robot rollout verifier Archive Batch API
+  version: 0.1.0
+tags:
+- name: Batch
+paths:
+  /v1/batch:
+    post:
+      summary: V1 Batch Start
+      description: 'Submit a batch of videos for ASYNCHRONOUS verification (finetune/h1
+
+        only — Opus is a per-clip call via /v1/verify).
+
+
+        `mode="single"`: one attempt per video. `mode="multi"`: each video may
+
+        hold several sequential attempts of the same task, auto-segmented into
+
+        per-attempt rollouts. Large files can be sent via the chunked-upload flow
+
+        (/api/upload/begin + /chunk) and passed as `tokens` (a JSON array of
+
+        upload ids) instead of `files`.
+
+
+        Returns a `batch_id`; poll GET /v1/batch/{id} until status is `done`.'
+      operationId: v1_batch_start_v1_batch_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_v1_batch_start_v1_batch_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchStart'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Batch
+  /v1/batch/{batch_id}:
+    get:
+      summary: V1 Batch Status
+      description: 'Poll a batch. Returns `status` (`running`/`done`/`error`), progress
+
+        (`done`/`total`), and `results` — the finished items so far in the clean
+
+        per-video shape. Results are small (no frames), so the full list is
+
+        returned every poll; a result appears once its video finishes verifying.'
+      operationId: v1_batch_status_v1_batch__batch_id__get
+      parameters:
+      - name: batch_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Batch Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Batch
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    BatchStart:
+      properties:
+        batch_id:
+          type: string
+          title: Batch Id
+        total:
+          type: integer
+          title: Total
+        status:
+          type: string
+          title: Status
+      type: object
+      required:
+      - batch_id
+      - total
+      - status
+      title: BatchStart
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    Body_v1_batch_start_v1_batch_post:
+      properties:
+        task:
+          type: string
+          title: Task
+        mode:
+          type: string
+          title: Mode
+          default: single
+        files:
+          anyOf:
+          - items:
+              type: string
+              contentMediaType: application/octet-stream
+            type: array
+          - type: 'null'
+          title: Files
+        tokens:
+          type: string
+          title: Tokens
+        frames:
+          type: integer
+          title: Frames
+          default: 8
+      type: object
+      required:
+      - task
+      title: Body_v1_batch_start_v1_batch_post

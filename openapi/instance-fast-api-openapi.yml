@@ -1,0 +1,23 @@
+openapi: 3.1.0
+info:
+  title: Robot rollout verifier Archive Fast API
+  version: 0.1.0
+tags:
+- name: Fast
+paths:
+  /fast:
+    get:
+      summary: Fast Page
+      description: 'Client-side-sampling demo: pick a video, sample frames in the browser,
+
+        verify via /v1/verify_frames. Shows the latency (no video upload).'
+      operationId: fast_page_fast_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            text/html:
+              schema:
+                type: string
+      tags:
+      - Fast

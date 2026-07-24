@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: Robot rollout verifier Archive Audit API
+  version: 0.1.0
+tags:
+- name: Audit
+paths:
+  /audit/marks:
+    get:
+      summary: Audit Marks Get
+      operationId: audit_marks_get_audit_marks_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Audit
+    post:
+      summary: Audit Marks Set
+      operationId: audit_marks_set_audit_marks_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Audit
+  /audit:
+    get:
+      summary: Audit Page
+      operationId: audit_page_audit_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            text/html:
+              schema:
+                type: string
+      tags:
+      - Audit
+  /audit/videos/{name}:
+    get:
+      summary: Audit Video
+      operationId: audit_video_audit_videos__name__get
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Name
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Audit
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError

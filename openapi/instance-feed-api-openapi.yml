@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  title: Robot rollout verifier Archive Feed API
+  version: 0.1.0
+tags:
+- name: Feed
+paths:
+  /api/feed:
+    get:
+      summary: Feed Endpoint
+      description: 'Live-feed poll: entries newer than `since` (a seq from a prior poll).
+
+        since=0 replays the whole retained deque — that''s the refresh story.
+
+        `session` narrows to one phone''s takes so several people can demo at once
+
+        (/?live=<session> pairs a laptop with one phone; /?live=1 shows everyone).
+
+        archived=0 (the wall) excludes archived takes; archived=1 is the archive
+
+        view. `archived_seqs` rides along every poll so a viewer that already
+
+        rendered a card learns it was archived elsewhere and can drop it.'
+      operationId: feed_endpoint_api_feed_get
+      parameters:
+      - name: since
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 0
+          title: Since
+      - name: session
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Session
+      - name: archived
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 0
+          title: Archived
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Feed
+  /api/feed/archive:
+    post:
+      summary: Feed Archive
+      description: 'Curate the wall: flip one take''s archived flag (archive or restore).
+
+        In-memory like the FEED itself — flags share the feed''s lifetime (pod
+
+        restart or deque eviction clears both), which is all curation needs.'
+      operationId: feed_archive_api_feed_archive_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedArchiveReq'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Feed
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    FeedArchiveReq:
+      properties:
+        seq:
+          type: integer
+          title: Seq
+        archived:
+          type: boolean
+          title: Archived
+          default: true
+      type: object
+      required:
+      - seq
+      title: FeedArchiveReq

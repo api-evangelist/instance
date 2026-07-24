@@ -1,0 +1,22 @@
+openapi: 3.1.0
+info:
+  title: Robot rollout verifier Archive Examples API
+  version: 0.1.0
+tags:
+- name: Examples
+paths:
+  /api/examples:
+    get:
+      summary: Examples
+      description: 'Metadata for the built-in "try an example" clips, per upload mode.
+
+        Only lists examples whose video is actually present on disk.'
+      operationId: examples_api_examples_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Examples

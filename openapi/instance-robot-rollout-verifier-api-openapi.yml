@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: Archive Robot Rollout Verifier API
+  version: 0.1.0
+tags:
+- name: Robot Rollout Verifier
+paths:
+  /:
+    get:
+      summary: Index
+      operationId: index__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            text/html:
+              schema:
+                type: string
+      tags:
+      - Robot Rollout Verifier
