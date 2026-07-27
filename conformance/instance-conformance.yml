@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/instance-verifier-openapi.json
+# Cross-cutting standards conformance, derived from the OpenAPI spec. No
+# published compliance program was found, so no `Compliance` pointer is emitted.
+standards:
+  - id: openapi-3.1
+    conforms: true
+    evidence: spec declares openapi 3.1.0
+  - id: oauth2
+    conforms: false
+    evidence: no oauth2 securitySchemes
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: errors use FastAPI HTTPValidationError (422), not application/problem+json
+  - id: json-api
+    conforms: false
+  - id: idempotency
+    conforms: false
+    evidence: no Idempotency-Key contract documented
+  - id: pagination
+    conforms: false
+    evidence: no paginated list endpoints

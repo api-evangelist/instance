@@ -1,0 +1,52 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/instance-verifier-openapi.json
+# Cross-cutting request/response semantics derived from the OpenAPI spec.
+# This is an early-stage FastAPI demo backend; several conventions common to
+# mature APIs (auth, idempotency, pagination, versioning policy) are NOT yet
+# present and are recorded as such rather than invented.
+authentication:
+  style: none
+  note: >-
+    The public demo backend declares no securitySchemes and no endpoint carries
+    a security[] requirement. Requests are unauthenticated. See
+    authentication/ (not emitted - no schemes to profile).
+request_media_types:
+  - multipart/form-data   # v1/verify, v1/batch, upload/* (video + task fields)
+  - application/json      # frame/subtask/caption/segment endpoints
+response_media_types:
+  - application/json
+upload:
+  style: chunked
+  flow:
+    - POST /api/upload/begin   # open an upload session
+    - POST /api/upload/chunk   # stream chunks
+    - POST /api/verify/start   # kick off verification
+    - GET  /api/job/{job_id}   # poll for the verdict
+  direct_alternative: POST /v1/verify (single multipart request, no chunking)
+async_jobs:
+  pattern: submit-then-poll
+  submit: [v1_batch_start_v1_batch_post, verify_start_api_verify_start_post]
+  poll: [v1_batch_status_v1_batch__batch_id__get, job_status_api_job__job_id__get]
+  identifiers: [batch_id, job_id]
+idempotency:
+  supported: false
+  note: No Idempotency-Key header or idempotent-retry contract is documented.
+pagination:
+  supported: false
+  note: No list endpoint exposes cursor/offset pagination.
+versioning:
+  scheme: uri-path
+  current_path_prefix: /v1
+  spec_version: 0.1.0
+  policy: none-published
+error_envelope:
+  transport: FastAPI HTTPValidationError (HTTP 422, application/json)
+  in_band: VerifyOut.error / VerifyOut.verdict=null on 200
+  ref: errors/instance-problem-types.yml
+rate_limit_signaling:
+  documented: false
+cross_links:
+  errors: errors/instance-problem-types.yml
+  data_model: data-model/instance-data-model.yml
+  lifecycle: lifecycle/instance-lifecycle.yml

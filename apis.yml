@@ -1,22 +1,429 @@
 aid: instance
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/instance.png
 name: Instance
-description: Instance is a company surfaced as a portfolio company of y-combinator and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Instance (Instance Labs) is a Y Combinator-backed (Summer 2026) company building a verification
+  layer for robot learning. Their platform ingests raw robot rollouts and episode footage from any
+  robot or camera angle and automatically judges whether a task was completed successfully, returning
+  a verdict with supporting evidence and a detailed subtask breakdown. The company positions itself as
+  the ground-truth / success-detection layer that lets robotics teams trust their training data and
+  train policies faster, and reports its verifier reaching higher accuracy than frontier vision-language
+  models at a fraction of the latency across 10,000+ human-labeled episodes on 7 robot platforms.
+  Founded by MIT computer scientists with backgrounds at SpaceX, AWS, and NASA JPL. Today the product
+  is exposed as a hosted demo (submit videos or capture a live rollout for verification); there is no
+  publicly documented developer API, SDK, or OpenAPI at this time.
 url: https://raw.githubusercontent.com/api-evangelist/instance/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - y-combinator
+x-yc-batch: Summer 2026
+x-website: https://www.instancelabs.ai/
 x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Robotics
+- Machine Learning
+- Verification
+- Evaluation
+- Data Quality
+- Artificial Intelligence
+- Y Combinator
+apis:
+- aid: instance:instance-archive-api
+  name: Instance Archive API
+  description: The Archive API from Instance — 1 operation(s) for archive.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Archive
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-archive-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-audit-api
+  name: Instance Audit API
+  description: The Audit API from Instance — 3 operation(s) for audit.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Audit
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-audit-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-batch-api
+  name: Instance Batch API
+  description: The Batch API from Instance — 2 operation(s) for batch.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Batch
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-batch-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-captions-api
+  name: Instance Captions API
+  description: The Captions API from Instance — 1 operation(s) for captions.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Captions
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-captions-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-clip-api
+  name: Instance Clip API
+  description: The Clip API from Instance — 1 operation(s) for clip.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Clip
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-clip-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-download-api
+  name: Instance Download API
+  description: The Download API from Instance — 1 operation(s) for download.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Download
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-download-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-example-api
+  name: Instance Example API
+  description: The Example API from Instance — 1 operation(s) for example.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Example
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-example-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-examples-api
+  name: Instance Examples API
+  description: The Examples API from Instance — 1 operation(s) for examples.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Examples
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-examples-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-fast-api
+  name: Instance Fast API
+  description: The Fast API from Instance — 1 operation(s) for fast.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Fast
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-fast-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-feed-api
+  name: Instance Feed API
+  description: The Feed API from Instance — 2 operation(s) for feed.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Feed
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-feed-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-h1-api
+  name: Instance H1 API
+  description: The H1 API from Instance — 1 operation(s) for h1.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - H1
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-h1-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-health-api
+  name: Instance Health API
+  description: The Health API from Instance — 1 operation(s) for health.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-health-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-ingest-api
+  name: Instance Ingest API
+  description: The Ingest API from Instance — 1 operation(s) for ingest.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Ingest
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-ingest-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-job-api
+  name: Instance Job API
+  description: The Job API from Instance — 1 operation(s) for job.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Job
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-job-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-live-example-api
+  name: Instance Live Example API
+  description: The Live Example API from Instance — 1 operation(s) for live example.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Live Example
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-live-example-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-live-example-video-api
+  name: Instance Live Example Video API
+  description: The Live Example Video API from Instance — 1 operation(s) for live example video.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Live Example Video
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-live-example-video-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-live-state-api
+  name: Instance Live State API
+  description: The Live State API from Instance — 1 operation(s) for live state.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Live State
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-live-state-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-opus-api
+  name: Instance Opus API
+  description: The Opus API from Instance — 1 operation(s) for opus.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Opus
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-opus-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-qr-api
+  name: Instance Qr API
+  description: The Qr API from Instance — 1 operation(s) for qr.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Qr
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-qr-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-record-api
+  name: Instance Record API
+  description: The Record API from Instance — 1 operation(s) for record.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Record
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-record-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-robot-rollout-verifier-api
+  name: Instance Robot Rollout Verifier API
+  description: >-
+    The Robot Rollout Verifier API from Instance — 1 operation(s) for robot rollout verifier.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Robot Rollout Verifier
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-robot-rollout-verifier-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-segment-api
+  name: Instance Segment API
+  description: The Segment API from Instance — 1 operation(s) for segment.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Segment
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-segment-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-subtasks-api
+  name: Instance Subtasks API
+  description: The Subtasks API from Instance — 1 operation(s) for subtasks.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Subtasks
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-subtasks-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-subtasks-trace-api
+  name: Instance Subtasks Trace API
+  description: The Subtasks Trace API from Instance — 1 operation(s) for subtasks trace.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Subtasks Trace
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-subtasks-trace-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-upload-api
+  name: Instance Upload API
+  description: The Upload API from Instance — 2 operation(s) for upload.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Upload
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-upload-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-usage-api
+  name: Instance Usage API
+  description: The Usage API from Instance — 2 operation(s) for usage.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Usage
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-usage-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-verify-api
+  name: Instance Verify API
+  description: The Verify API from Instance — 3 operation(s) for verify.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Verify
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-verify-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
+- aid: instance:instance-verify-frames-api
+  name: Instance Verify Frames API
+  description: The Verify Frames API from Instance — 1 operation(s) for verify frames.
+  humanURL: https://demo.instancelabs.ai
+  baseURL: https://demo.instancelabs.ai
+  tags:
+  - Verify Frames
+  properties:
+  - type: OpenAPI
+    url: openapi/instance-verify-frames-api-openapi.yml
+  - type: Demo
+    url: https://demo.instancelabs.ai
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+common:
+- type: DomainSecurity
+  url: security/instance-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/instance-agentic-access.yml
+- type: Website
+  url: https://www.instancelabs.ai/
+- type: Demo
+  url: https://demo.instancelabs.ai
+- type: LinkedIn
+  url: https://www.linkedin.com/company/instancelabs
+- type: Twitter
+  url: https://x.com/tryinstance
+- type: Support
+  url: mailto:founders@instancelabs.ai
+- type: ErrorCatalog
+  url: errors/instance-problem-types.yml
+- type: DataModel
+  url: data-model/instance-data-model.yml
+- type: Conventions
+  url: conventions/instance-conventions.yml
+- type: MCPServer
+  url: mcp/instance-mcp.yml
+- type: Overlay
+  url: overlays/instance-verifier-overlay.yaml
+- type: LLMsTxt
+  url: llms/instance-llms.txt
+- type: Conformance
+  url: conformance/instance-conformance.yml
+- type: Lifecycle
+  url: lifecycle/instance-lifecycle.yml
+- type: AgentSkill
+  url: skills/instance-verify-rollout.md
+- type: AgentSkill
+  url: skills/instance-batch-verify.md
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

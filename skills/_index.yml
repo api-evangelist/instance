@@ -1,0 +1,12 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/instance-verifier-openapi.json
+skills:
+  - file: instance-verify-rollout.md
+    name: Verify a robot rollout
+    api: openapi/instance-verifier-openapi.json
+    operations: [v1_verify_v1_verify_post, v1_verify_frames_v1_verify_frames_post]
+  - file: instance-batch-verify.md
+    name: Batch-verify robot rollouts
+    api: openapi/instance-verifier-openapi.json
+    operations: [v1_batch_start_v1_batch_post, v1_batch_status_v1_batch__batch_id__get]

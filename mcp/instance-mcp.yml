@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/instance-verifier-openapi.json
+# No official/hosted MCP server was found for Instance. This is a DERIVED
+# candidate tool list mapping the meaningful verification operations of the
+# public demo API to MCP tools. Not published by the provider.
+server:
+  name: instance-verifier
+  transport: http
+  url: null   # no published MCP endpoint
+tools:
+  - name: verify_rollout
+    description: Verify one robot-rollout video against a task instruction; returns a success/failure verdict.
+    source_operation: openapi/instance-verifier-openapi.json#v1_verify_v1_verify_post
+  - name: verify_frames
+    description: Verify a set of pre-sampled frames (with optional timestamps) against a task instruction.
+    source_operation: openapi/instance-verifier-openapi.json#v1_verify_frames_v1_verify_frames_post
+  - name: start_batch
+    description: Start a multi-video / multi-attempt verification batch and get a batch_id.
+    source_operation: openapi/instance-verifier-openapi.json#v1_batch_start_v1_batch_post
+  - name: get_batch_status
+    description: Poll a verification batch by batch_id for progress and results.
+    source_operation: openapi/instance-verifier-openapi.json#v1_batch_status_v1_batch__batch_id__get
+  - name: get_job_status
+    description: Poll an async upload-based verification job by job_id.
+    source_operation: openapi/instance-verifier-openapi.json#job_status_api_job__job_id__get
+  - name: get_usage
+    description: Retrieve API usage for the account/session.
+    source_operation: openapi/instance-verifier-openapi.json#usage_api_api_usage_get

@@ -1,0 +1,17 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/instance-verifier-openapi.json
+# Early-stage provider. Versioning is derivable from the URI path; no
+# deprecation policy, SLA, or status page is published (recorded as absent
+# rather than invented). No StatusPage/Deprecation pointers are emitted.
+versioning:
+  scheme: uri-path
+  current: v1
+  spec_version: 0.1.0
+deprecation:
+  policy_url: null
+  sunset_header: false
+sla:
+  url: null
+status_page: null
+deprecated_operations: []

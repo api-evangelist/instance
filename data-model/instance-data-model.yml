@@ -1,0 +1,45 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/instance-verifier-openapi.json
+# Entity-relationship graph derived from the OpenAPI component schemas and the
+# id-reference fields on the verification/batch endpoints.
+entities:
+  - name: Verification
+    schema: VerifyOut
+    description: A single robot-rollout verdict for one task+video pair.
+    fields:
+      - {name: task, type: string, required: true, description: The task instruction the rollout was judged against.}
+      - {name: name, type: string, required: false, description: Optional name/label of the rollout or clip.}
+      - {name: verdict, type: string, required: true, nullable: true, description: '"success", "failure", or null when unparseable.'}
+      - {name: error, type: string, required: false, description: Verification-level error when the model could not judge.}
+  - name: Batch
+    schema: BatchStart
+    description: A multi-video / multi-attempt verification job.
+    id_field: batch_id
+    id_prefix: null
+    fields:
+      - {name: batch_id, type: string, required: true, description: Opaque batch identifier used to poll status.}
+      - {name: total, type: integer, required: true, description: Number of rollouts submitted in the batch.}
+      - {name: status, type: string, required: true, description: Batch processing status.}
+  - name: FramesRequest
+    schema: FramesReq
+    description: Pre-sampled frames submitted for verification instead of a video.
+    fields:
+      - {name: task, type: string, required: true}
+      - {name: frames, type: array<string>, required: true, description: Base64/URL frame list.}
+      - {name: times, type: array<number>, required: false, description: Optional per-frame timestamps.}
+      - {name: name, type: string, required: false}
+  - name: Job
+    description: Asynchronous verification job created by the /api/verify/* upload flow, polled via GET /api/job/{job_id}.
+    id_field: job_id
+relationships:
+  - from: Batch
+    to: Verification
+    kind: has_many
+    via: batch_id
+    description: A batch fans out into per-rollout Verification verdicts, addressed by batch_id.
+  - from: Job
+    to: Verification
+    kind: has_one
+    via: job_id
+    description: An async upload job resolves to a Verification result when complete.

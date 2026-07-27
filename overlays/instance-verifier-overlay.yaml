@@ -1,0 +1,31 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Instance Robot Rollout Verifier
+  version: 1.0.0
+# Captures API Evangelist enrichment enhancements over the harvested spec.
+# The original openapi/instance-verifier-openapi.json is never mutated.
+extends: openapi/instance-verifier-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-rating: 2
+      x-provider: Instance (Instance Labs)
+      x-source: https://demo.instancelabs.ai/openapi.json
+      description: >-
+        Robot-rollout verification API. Submit a rollout video and a task
+        instruction and receive a success/failure verdict with subtask
+        evidence. Harvested from the public demo backend.
+  - target: $
+    update:
+      servers:
+        - url: https://demo.instancelabs.ai
+          description: Instance hosted demo backend (unauthenticated).
+  - target: $.paths['/v1/verify'].post
+    update:
+      tags: [Verification]
+  - target: $.paths['/v1/batch'].post
+    update:
+      tags: [Verification]
+  - target: $.paths['/v1/verify_frames'].post
+    update:
+      tags: [Verification]

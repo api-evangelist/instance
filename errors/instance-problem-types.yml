@@ -1,0 +1,49 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/instance-verifier-openapi.json
+# The verifier API is FastAPI-generated. Error responses are NOT RFC 9457
+# problem+json; validation failures return HTTP 422 with a FastAPI
+# HTTPValidationError envelope (application/json). The 200 VerifyOut body also
+# carries an in-band `error` string for model/verification failures that are
+# not HTTP errors.
+format: fastapi-validation
+envelope:
+  http_error:
+    media_type: application/json
+    schema: HTTPValidationError
+    shape:
+      detail:
+        - loc: [array of string|int - JSON pointer path to the offending field]
+          msg: human-readable validation message
+          type: machine error type (e.g. missing, string_type, value_error)
+  in_band_error:
+    note: >-
+      A 200 response from /v1/verify (VerifyOut) may carry a non-null `error`
+      string and/or a null `verdict` when the model produced no parseable
+      answer. This is a verification-level failure, not a transport error.
+    fields: [verdict, error]
+problems:
+  - status: 422
+    title: Validation Error
+    detail: One or more request fields failed validation (missing/typed incorrectly).
+    media_type: application/json
+    schema: HTTPValidationError
+    applies_to:
+      - v1_verify_v1_verify_post
+      - v1_batch_start_v1_batch_post
+      - v1_batch_status_v1_batch__batch_id__get
+      - v1_verify_frames_v1_verify_frames_post
+      - job_status_api_job__job_id__get
+      - upload_begin_api_upload_begin_post
+      - upload_chunk_api_upload_chunk_post
+      - verify_start_api_verify_start_post
+      - verify_add_api_verify_add_post
+  - status: 200
+    title: Verification produced no verdict
+    detail: >-
+      Successful HTTP response whose VerifyOut.verdict is null and/or error is
+      set - the model could not return a parseable success/failure judgement.
+    media_type: application/json
+    schema: VerifyOut
+    applies_to:
+      - v1_verify_v1_verify_post
