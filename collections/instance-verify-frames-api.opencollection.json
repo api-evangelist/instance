@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Verify Frames API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Verify Frames",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "V1 Verify Frames",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/verify_frames",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Verify from frames the CLIENT already sampled — no video upload, no\nserver-side decode. The browser extracts N frames from the local video and\nposts them here; we run the same h1 verdict on them. This makes verdict\nlatency a tiny, constant frame upload instead of shipping (and decoding) the\nwhole video, so it no longer scales with clip length."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

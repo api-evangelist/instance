@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Examples API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Examples",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Examples",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/examples"
+          },
+          "docs": "Metadata for the built-in \"try an example\" clips, per upload mode.\nOnly lists examples whose video is actually present on disk."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

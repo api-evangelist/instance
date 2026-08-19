@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Verify API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Verify",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Verify Start",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/verify/start",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Background twin of /api/h1 (mode=single) / /api/segment (mode=multi).\n\nfinal=0 opens a STREAMING job: the browser adds videos via\n/api/verify/add as each upload lands, so verification overlaps upload —\nresults stream out while later files are still in transit. plan_total is\nthe intended batch size, used only for progress display."
+        },
+        {
+          "info": {
+            "name": "Verify Add",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/verify/add",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Feed more videos into a streaming job (and/or seal it with final=1 —\na seal-only call carries no files). Each add-group starts verifying\nimmediately; the job completes when sealed and every video delivered."
+        },
+        {
+          "info": {
+            "name": "V1 Verify",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/verify",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Verify ONE robot-rollout video against a task instruction (our h1\nfinetune).\n\nForm fields: `task` (the instruction), `file` (the video), `frames`\n(frames sampled, clamped 8-32).\n\nReturns a single verdict: `\"success\"`, `\"failure\"`, or `null` (the model\ngave no parseable answer). A video holding several sequential attempts\nshould instead go to POST /v1/batch with mode=multi."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

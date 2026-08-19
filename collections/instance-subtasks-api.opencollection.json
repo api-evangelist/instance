@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Subtasks API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subtasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Subtasks Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/subtasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grounded subtask breakdown for one clip (Opus-only, no local model).\n\nRe-samples the RETAINED source clip at higher density than the verdict\n(grounding needs to localize *within* the clip, not just judge the end),\nthen asks Opus to decompose + ground each step. Returns the timeline plus\nthe frames it saw, so the UI can align evidence thumbnails to the strip."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

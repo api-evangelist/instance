@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Clip API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clip",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Clip Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/clip/:clip_id",
+            "params": [
+              {
+                "name": "clip_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Stream a clip's retained source video (kept for the download button\nanyway) so the result card can play it under the live caption strip.\nFileResponse honors Range headers, so scrubbing works."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

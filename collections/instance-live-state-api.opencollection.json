@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Live State API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Live State",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Live State",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/live_state",
+            "params": [
+              {
+                "name": "session",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "1s poll from the wall's live tile: newest frame + tick state +\ncaptions + (once confirmed) the verdict."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

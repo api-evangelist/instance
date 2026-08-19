@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Qr API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Qr",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Qr Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/qr",
+            "params": [
+              {
+                "name": "session",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "SVG QR code linking a phone to this viewer's live session: encodes\n<public origin>/record?session=<sid>. Only the session is caller-supplied\n(sanitized), so this can't be used to mint QR codes for arbitrary URLs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

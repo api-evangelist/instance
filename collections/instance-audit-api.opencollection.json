@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Audit API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Audit Marks Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/audit/marks"
+          },
+          "docs": "Audit Marks Get"
+        },
+        {
+          "info": {
+            "name": "Audit Marks Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/audit/marks"
+          },
+          "docs": "Audit Marks Set"
+        },
+        {
+          "info": {
+            "name": "Audit Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/audit"
+          },
+          "docs": "Audit Page"
+        },
+        {
+          "info": {
+            "name": "Audit Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/audit/videos/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Audit Video"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

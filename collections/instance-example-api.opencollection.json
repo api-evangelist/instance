@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Example API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Example",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Example Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/example/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Serve one built-in example clip so the frontend can load it into the\nnormal upload flow and play it inline."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

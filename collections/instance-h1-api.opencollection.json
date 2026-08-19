@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive H1 API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "H1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "H1 Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/h1",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Synchronous single-rollout batch (kept for scripts/curl; the UI uses\n/api/verify/start so a big batch can't outlive the Cloudflare timeout)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

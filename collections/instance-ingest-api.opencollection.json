@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Ingest API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ingest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ingest Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/ingest",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "One live take from the phone: verify it and push it onto the feed.\n\nBlocks for the ~1-3s of frame sampling + h1 so the recorder sees the\nverdict in hand; the feed entry is appended BEFORE we return, so the big\nscreen never depends on the phone's connection surviving the response.\nError results are fed too — a failed take should show on screen, not\nvanish silently."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

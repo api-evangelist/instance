@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Subtasks Trace API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subtasks Trace",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Subtasks Trace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/subtasks_trace",
+            "params": [
+              {
+                "name": "clip_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Cursor-poll the labeling loop's reasoning trace for one clip — the\nwall's drawer calls this every ~2s while /api/subtasks?mode=label runs,\nso the agent's requests/reasons appear as they happen (same cursor\nmechanics as /api/job)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

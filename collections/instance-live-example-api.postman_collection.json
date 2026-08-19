@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "8b5d1a91-a351-406d-a183-942b0f3ed695",
+      "name": "Live Example",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e3a76da4-5997-4c37-b890-4af5b8b58099",
+          "name": "Live Example",
+          "request": {
+            "name": "Live Example",
+            "description": {
+              "content": "Self-contained worked example (pill-jar take) shown on the live landing\npage. Pre-rendered offline (scripts/build_example) so it needs no model\nserver or Opus call at view time and survives restarts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "live_example"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ac9d6f6-f8f6-4f15-bc1f-a9e8d6ee871f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "live_example"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a9602574-b5e8-429b-adb0-5cfdce7f12da",
+    "name": "Robot rollout verifier Archive Live Example API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Segment API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Segment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Segment Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/segment",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Synchronous multi-rollout batch (kept for scripts/curl; the UI uses\n/api/verify/start). Per-result shape is a strict superset of an /api/h1\nresult (plus rollout_index/start_time/end_time/note), so the frontend card\nrenderer and the download summary consume it unchanged."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

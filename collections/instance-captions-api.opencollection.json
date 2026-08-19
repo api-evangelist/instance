@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Captions API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Captions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Captions Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/captions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Live action-caption track for one clip.\n\nTasks with an approved taxonomy get the track DERIVED from the Yondu\ninterval labels (one vocabulary everywhere; no model call) — answered\nwith pending_labels while the labeling loop is still running, and the\ncard re-asks once the labels land. Everything else gets the Opus\nnarration track, computed ONCE per clip and cached to captions.json\ninside the clip dir, so the track the player maps currentTime onto never\nchanges between replays (the determinism the"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

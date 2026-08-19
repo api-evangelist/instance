@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Feed API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Feed",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Feed Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/feed",
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "session",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "archived",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Live-feed poll: entries newer than `since` (a seq from a prior poll).\nsince=0 replays the whole retained deque — that's the refresh story.\n`session` narrows to one phone's takes so several people can demo at once\n(/?live=<session> pairs a laptop with one phone; /?live=1 shows everyone).\narchived=0 (the wall) excludes archived takes; archived=1 is the archive\nview. `archived_seqs` rides along every poll so a viewer that already\nrendered a card learns it was archived elsewhere and can drop it."
+        },
+        {
+          "info": {
+            "name": "Feed Archive",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/feed/archive",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Curate the wall: flip one take's archived flag (archive or restore).\nIn-memory like the FEED itself — flags share the feed's lifetime (pod\nrestart or deque eviction clears both), which is all curation needs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

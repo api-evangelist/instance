@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Live Example API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Live Example",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Live Example",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/live_example"
+          },
+          "docs": "Self-contained worked example (pill-jar take) shown on the live landing\npage. Pre-rendered offline (scripts/build_example) so it needs no model\nserver or Opus call at view time and survives restarts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

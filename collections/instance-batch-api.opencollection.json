@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Batch API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Batch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "V1 Batch Start",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/batch",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Submit a batch of videos for ASYNCHRONOUS verification (finetune/h1\nonly — Opus is a per-clip call via /v1/verify).\n\n`mode=\"single\"`: one attempt per video. `mode=\"multi\"`: each video may\nhold several sequential attempts of the same task, auto-segmented into\nper-attempt rollouts. Large files can be sent via the chunked-upload flow\n(/api/upload/begin + /chunk) and passed as `tokens` (a JSON array of\nupload ids) instead of `files`.\n\nReturns a `batch_id`; poll GET /v1/batch/{id} until status is `do"
+        },
+        {
+          "info": {
+            "name": "V1 Batch Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/batch/:batch_id",
+            "params": [
+              {
+                "name": "batch_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Poll a batch. Returns `status` (`running`/`done`/`error`), progress\n(`done`/`total`), and `results` — the finished items so far in the clean\nper-video shape. Results are small (no frames), so the full list is\nreturned every poll; a result appears once its video finishes verifying."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

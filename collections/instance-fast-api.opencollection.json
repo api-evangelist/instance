@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robot rollout verifier Archive Fast API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fast",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fast Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/fast"
+          },
+          "docs": "Client-side-sampling demo: pick a video, sample frames in the browser,\nverify via /v1/verify_frames. Shows the latency (no video upload)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
