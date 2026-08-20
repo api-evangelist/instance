@@ -38,6 +38,15 @@ modified: '2026-07-19'
 tags:
 - Company
 - Robotics
+- Machine-Learning
+- Verification
+- Evaluation
+- Data Quality
+- Artificial Intelligence
+- Y Combinator
+tags_raw:
+- Company
+- Robotics
 - Machine Learning
 - Verification
 - Evaluation
@@ -111,6 +120,8 @@ apis:
   humanURL: https://demo.instancelabs.ai
   baseURL: https://demo.instancelabs.ai
   tags:
+  - Downloads
+  tags_raw:
   - Download
   properties:
   - type: OpenAPI
@@ -147,6 +158,8 @@ apis:
   humanURL: https://demo.instancelabs.ai
   baseURL: https://demo.instancelabs.ai
   tags:
+  - FAST
+  tags_raw:
   - Fast
   properties:
   - type: OpenAPI
@@ -267,6 +280,8 @@ apis:
   humanURL: https://demo.instancelabs.ai
   baseURL: https://demo.instancelabs.ai
   tags:
+  - QR
+  tags_raw:
   - Qr
   properties:
   - type: OpenAPI
