@@ -169,7 +169,7 @@ apis:
   humanURL: https://demo.instancelabs.ai
   baseURL: https://demo.instancelabs.ai
   tags:
-  - Fast
+  - FAST
   tags_raw:
   - Fast
   properties:
@@ -291,7 +291,7 @@ apis:
   humanURL: https://demo.instancelabs.ai
   baseURL: https://demo.instancelabs.ai
   tags:
-  - Qr
+  - QR
   tags_raw:
   - Qr
   properties:
