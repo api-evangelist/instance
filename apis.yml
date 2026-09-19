@@ -71,6 +71,8 @@ apis:
   humanURL: https://demo.instancelabs.ai
   baseURL: https://demo.instancelabs.ai
   tags:
+  - Archives
+  tags_raw:
   - Archive
   properties:
   - type: OpenAPI
@@ -157,6 +159,8 @@ apis:
   humanURL: https://demo.instancelabs.ai
   baseURL: https://demo.instancelabs.ai
   tags:
+  - Example
+  tags_raw:
   - Examples
   properties:
   - type: OpenAPI
