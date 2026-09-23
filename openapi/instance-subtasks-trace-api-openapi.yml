@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Robot rollout verifier Archive Subtasks Trace API
+  title: Robot rollout verifier Subtasks Trace API
   version: 0.1.0
 tags:
 - name: Subtasks Trace

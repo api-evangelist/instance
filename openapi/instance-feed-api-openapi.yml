@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Robot rollout verifier Archive Feed API
+  title: Robot rollout verifier Feed API
   version: 0.1.0
 tags:
 - name: Feed
@@ -14,7 +14,7 @@ paths:
 
         `session` narrows to one phone''s takes so several people can demo at once
 
-        (/?live=<session> pairs a laptop with one phone; /?live=1 shows everyone).
+        (/?live= pairs a laptop with one phone; /?live=1 shows everyone).
 
         archived=0 (the wall) excludes archived takes; archived=1 is the archive
 
@@ -98,6 +98,19 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    FeedArchiveReq:
+      properties:
+        seq:
+          type: integer
+          title: Seq
+        archived:
+          type: boolean
+          title: Archived
+          default: true
+      type: object
+      required:
+      - seq
+      title: FeedArchiveReq
     ValidationError:
       properties:
         loc:
@@ -124,16 +137,3 @@ components:
       - msg
       - type
       title: ValidationError
-    FeedArchiveReq:
-      properties:
-        seq:
-          type: integer
-          title: Seq
-        archived:
-          type: boolean
-          title: Archived
-          default: true
-      type: object
-      required:
-      - seq
-      title: FeedArchiveReq

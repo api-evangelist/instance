@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Robot rollout verifier Archive Upload API
+  title: Robot rollout verifier Upload API
   version: 0.1.0
 tags:
 - name: Upload
@@ -55,6 +55,15 @@ paths:
       - Upload
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     Body_upload_chunk_api_upload_chunk_post:
       properties:
         upload_id:
@@ -73,15 +82,15 @@ components:
       - upload_id
       - chunk
       title: Body_upload_chunk_api_upload_chunk_post
-    HTTPValidationError:
+    Body_upload_begin_api_upload_begin_post:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        name:
+          type: string
+          title: Name
       type: object
-      title: HTTPValidationError
+      required:
+      - name
+      title: Body_upload_begin_api_upload_begin_post
     ValidationError:
       properties:
         loc:
@@ -108,12 +117,3 @@ components:
       - msg
       - type
       title: ValidationError
-    Body_upload_begin_api_upload_begin_post:
-      properties:
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - name
-      title: Body_upload_begin_api_upload_begin_post

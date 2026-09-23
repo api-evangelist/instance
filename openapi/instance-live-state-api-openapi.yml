@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Robot rollout verifier Archive Live State API
+  title: Robot rollout verifier Live State API
   version: 0.1.0
 tags:
 - name: Live State
