@@ -110,59 +110,6 @@ paths:
       - Verify
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Body_v1_verify_v1_verify_post:
-      properties:
-        task:
-          type: string
-          title: Task
-        file:
-          type: string
-          contentMediaType: application/octet-stream
-          title: File
-        frames:
-          type: integer
-          title: Frames
-          default: 8
-      type: object
-      required:
-      - task
-      - file
-      title: Body_v1_verify_v1_verify_post
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     Body_verify_start_api_verify_start_post:
       properties:
         task:
@@ -199,6 +146,30 @@ components:
       required:
       - task
       title: Body_verify_start_api_verify_start_post
+    Body_verify_add_api_verify_add_post:
+      properties:
+        job_id:
+          type: string
+          title: Job Id
+        files:
+          anyOf:
+          - items:
+              type: string
+              contentMediaType: application/octet-stream
+            type: array
+          - type: 'null'
+          title: Files
+        tokens:
+          type: string
+          title: Tokens
+        final:
+          type: integer
+          title: Final
+          default: 0
+      type: object
+      required:
+      - job_id
+      title: Body_verify_add_api_verify_add_post
     VerifyOut:
       properties:
         task:
@@ -224,27 +195,56 @@ components:
       - task
       - verdict
       title: VerifyOut
-    Body_verify_add_api_verify_add_post:
+    Body_v1_verify_v1_verify_post:
       properties:
-        job_id:
+        task:
           type: string
-          title: Job Id
-        files:
-          anyOf:
-          - items:
-              type: string
-              contentMediaType: application/octet-stream
-            type: array
-          - type: 'null'
-          title: Files
-        tokens:
+          title: Task
+        file:
           type: string
-          title: Tokens
-        final:
+          contentMediaType: application/octet-stream
+          title: File
+        frames:
           type: integer
-          title: Final
-          default: 0
+          title: Frames
+          default: 8
       type: object
       required:
-      - job_id
-      title: Body_verify_add_api_verify_add_post
+      - task
+      - file
+      title: Body_v1_verify_v1_verify_post
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError

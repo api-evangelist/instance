@@ -55,42 +55,6 @@ paths:
       - Upload
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    Body_upload_chunk_api_upload_chunk_post:
-      properties:
-        upload_id:
-          type: string
-          title: Upload Id
-        chunk:
-          type: string
-          contentMediaType: application/octet-stream
-          title: Chunk
-        offset:
-          type: integer
-          title: Offset
-          default: -1
-      type: object
-      required:
-      - upload_id
-      - chunk
-      title: Body_upload_chunk_api_upload_chunk_post
-    Body_upload_begin_api_upload_begin_post:
-      properties:
-        name:
-          type: string
-          title: Name
-      type: object
-      required:
-      - name
-      title: Body_upload_begin_api_upload_begin_post
     ValidationError:
       properties:
         loc:
@@ -117,3 +81,39 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    Body_upload_begin_api_upload_begin_post:
+      properties:
+        name:
+          type: string
+          title: Name
+      type: object
+      required:
+      - name
+      title: Body_upload_begin_api_upload_begin_post
+    Body_upload_chunk_api_upload_chunk_post:
+      properties:
+        upload_id:
+          type: string
+          title: Upload Id
+        chunk:
+          type: string
+          contentMediaType: application/octet-stream
+          title: Chunk
+        offset:
+          type: integer
+          title: Offset
+          default: -1
+      type: object
+      required:
+      - upload_id
+      - chunk
+      title: Body_upload_chunk_api_upload_chunk_post
