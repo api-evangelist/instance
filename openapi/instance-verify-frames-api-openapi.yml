@@ -41,6 +41,40 @@ paths:
       - Verify Frames
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    VerifyOut:
+      properties:
+        task:
+          type: string
+          title: Task
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        verdict:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Verdict
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      type: object
+      required:
+      - task
+      - verdict
+      title: VerifyOut
     ValidationError:
       properties:
         loc:
@@ -67,15 +101,6 @@ components:
       - msg
       - type
       title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     FramesReq:
       properties:
         task:
@@ -103,28 +128,3 @@ components:
       - task
       - frames
       title: FramesReq
-    VerifyOut:
-      properties:
-        task:
-          type: string
-          title: Task
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        verdict:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Verdict
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-      type: object
-      required:
-      - task
-      - verdict
-      title: VerifyOut

@@ -89,6 +89,28 @@ paths:
       - Feed
 components:
   schemas:
+    FeedArchiveReq:
+      properties:
+        seq:
+          type: integer
+          title: Seq
+        archived:
+          type: boolean
+          title: Archived
+          default: true
+      type: object
+      required:
+      - seq
+      title: FeedArchiveReq
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -115,25 +137,3 @@ components:
       - msg
       - type
       title: ValidationError
-    FeedArchiveReq:
-      properties:
-        seq:
-          type: integer
-          title: Seq
-        archived:
-          type: boolean
-          title: Archived
-          default: true
-      type: object
-      required:
-      - seq
-      title: FeedArchiveReq
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError

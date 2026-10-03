@@ -110,6 +110,55 @@ paths:
       - Verify
 components:
   schemas:
+    VerifyOut:
+      properties:
+        task:
+          type: string
+          title: Task
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        verdict:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Verdict
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      type: object
+      required:
+      - task
+      - verdict
+      title: VerifyOut
+    Body_verify_add_api_verify_add_post:
+      properties:
+        job_id:
+          type: string
+          title: Job Id
+        files:
+          anyOf:
+          - items:
+              type: string
+              contentMediaType: application/octet-stream
+            type: array
+          - type: 'null'
+          title: Files
+        tokens:
+          type: string
+          title: Tokens
+        final:
+          type: integer
+          title: Final
+          default: 0
+      type: object
+      required:
+      - job_id
+      title: Body_verify_add_api_verify_add_post
     Body_verify_start_api_verify_start_post:
       properties:
         task:
@@ -146,55 +195,15 @@ components:
       required:
       - task
       title: Body_verify_start_api_verify_start_post
-    Body_verify_add_api_verify_add_post:
+    HTTPValidationError:
       properties:
-        job_id:
-          type: string
-          title: Job Id
-        files:
-          anyOf:
-          - items:
-              type: string
-              contentMediaType: application/octet-stream
-            type: array
-          - type: 'null'
-          title: Files
-        tokens:
-          type: string
-          title: Tokens
-        final:
-          type: integer
-          title: Final
-          default: 0
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      required:
-      - job_id
-      title: Body_verify_add_api_verify_add_post
-    VerifyOut:
-      properties:
-        task:
-          type: string
-          title: Task
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        verdict:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Verdict
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-      type: object
-      required:
-      - task
-      - verdict
-      title: VerifyOut
+      title: HTTPValidationError
     Body_v1_verify_v1_verify_post:
       properties:
         task:
@@ -213,15 +222,6 @@ components:
       - task
       - file
       title: Body_v1_verify_v1_verify_post
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
