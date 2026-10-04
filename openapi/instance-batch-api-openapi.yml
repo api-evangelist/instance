@@ -81,32 +81,6 @@ paths:
       - Batch
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    BatchStart:
-      properties:
-        batch_id:
-          type: string
-          title: Batch Id
-        total:
-          type: integer
-          title: Total
-        status:
-          type: string
-          title: Status
-      type: object
-      required:
-      - batch_id
-      - total
-      - status
-      title: BatchStart
     ValidationError:
       properties:
         loc:
@@ -133,6 +107,15 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     Body_v1_batch_start_v1_batch_post:
       properties:
         task:
@@ -161,3 +144,20 @@ components:
       required:
       - task
       title: Body_v1_batch_start_v1_batch_post
+    BatchStart:
+      properties:
+        batch_id:
+          type: string
+          title: Batch Id
+        total:
+          type: integer
+          title: Total
+        status:
+          type: string
+          title: Status
+      type: object
+      required:
+      - batch_id
+      - total
+      - status
+      title: BatchStart

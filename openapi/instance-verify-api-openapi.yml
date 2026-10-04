@@ -110,55 +110,6 @@ paths:
       - Verify
 components:
   schemas:
-    VerifyOut:
-      properties:
-        task:
-          type: string
-          title: Task
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        verdict:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Verdict
-        error:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Error
-      type: object
-      required:
-      - task
-      - verdict
-      title: VerifyOut
-    Body_verify_add_api_verify_add_post:
-      properties:
-        job_id:
-          type: string
-          title: Job Id
-        files:
-          anyOf:
-          - items:
-              type: string
-              contentMediaType: application/octet-stream
-            type: array
-          - type: 'null'
-          title: Files
-        tokens:
-          type: string
-          title: Tokens
-        final:
-          type: integer
-          title: Final
-          default: 0
-      type: object
-      required:
-      - job_id
-      title: Body_verify_add_api_verify_add_post
     Body_verify_start_api_verify_start_post:
       properties:
         task:
@@ -204,24 +155,55 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
-    Body_v1_verify_v1_verify_post:
+    Body_verify_add_api_verify_add_post:
+      properties:
+        job_id:
+          type: string
+          title: Job Id
+        files:
+          anyOf:
+          - items:
+              type: string
+              contentMediaType: application/octet-stream
+            type: array
+          - type: 'null'
+          title: Files
+        tokens:
+          type: string
+          title: Tokens
+        final:
+          type: integer
+          title: Final
+          default: 0
+      type: object
+      required:
+      - job_id
+      title: Body_verify_add_api_verify_add_post
+    VerifyOut:
       properties:
         task:
           type: string
           title: Task
-        file:
-          type: string
-          contentMediaType: application/octet-stream
-          title: File
-        frames:
-          type: integer
-          title: Frames
-          default: 8
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        verdict:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Verdict
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
       type: object
       required:
       - task
-      - file
-      title: Body_v1_verify_v1_verify_post
+      - verdict
+      title: VerifyOut
     ValidationError:
       properties:
         loc:
@@ -248,3 +230,21 @@ components:
       - msg
       - type
       title: ValidationError
+    Body_v1_verify_v1_verify_post:
+      properties:
+        task:
+          type: string
+          title: Task
+        file:
+          type: string
+          contentMediaType: application/octet-stream
+          title: File
+        frames:
+          type: integer
+          title: Frames
+          default: 8
+      type: object
+      required:
+      - task
+      - file
+      title: Body_v1_verify_v1_verify_post

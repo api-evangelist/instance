@@ -41,41 +41,6 @@ paths:
       - Subtasks
 components:
   schemas:
-    SubtaskReq:
-      properties:
-        task:
-          type: string
-          title: Task
-        clip_id:
-          type: string
-          title: Clip Id
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        frames:
-          type: integer
-          title: Frames
-          default: 16
-        mode:
-          type: string
-          title: Mode
-          default: explain
-      type: object
-      required:
-      - task
-      - clip_id
-      title: SubtaskReq
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -102,3 +67,38 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    SubtaskReq:
+      properties:
+        task:
+          type: string
+          title: Task
+        clip_id:
+          type: string
+          title: Clip Id
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        frames:
+          type: integer
+          title: Frames
+          default: 16
+        mode:
+          type: string
+          title: Mode
+          default: explain
+      type: object
+      required:
+      - task
+      - clip_id
+      title: SubtaskReq
